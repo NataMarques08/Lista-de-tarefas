@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.todolist.database.BancoTask
-import com.example.todolist.databinding.ActivityAddTaskBindinggit
+import com.example.todolist.databinding.ActivityAddTaskBinding
 import com.example.todolist.extensions.format
 import com.example.todolist.extensions.text
 import com.example.todolist.model.Task
