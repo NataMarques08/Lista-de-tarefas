@@ -2,6 +2,7 @@ package com.example.todolist.adapter
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -9,23 +10,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.R
 import com.example.todolist.databinding.ListTaskBinding
 import com.example.todolist.model.Task
+import com.google.android.material.textfield.TextInputLayout
 
-class TaskListAdapter :
+class TaskListAdapter(var lista:MutableList<Task> = mutableListOf()) :
     androidx.recyclerview.widget.ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCallBack()) {
 
     var listenerEdit: (Task) -> Unit = {}
     var listenerDelete: (Task) -> Unit = {}
 
    inner class TaskViewHolder(
-        private val binding: ListTaskBinding)
-        : RecyclerView.ViewHolder(binding.root){
-        fun bind(item:Task){
-            binding.tvTitle.text = item.title
-            binding.tvDate.text = "${item.data} ${item.hora}"
-            binding.ivOptions.setOnClickListener {
-                showPopup(item)
-            }
-        }
+       private val binding: ListTaskBinding
+       ) : RecyclerView.ViewHolder(binding.root){
+
+       fun bind(item:Task){
+           binding.tvTitle.text = item.title
+           binding.tvDate.text = "${item.data} ${item.hora}"
+           binding.ivOptions.setOnClickListener {
+               showPopup(item)
+           }
+           lista.add(item)
+       }
+
         private fun showPopup(item:Task){
             val ivOptions = binding.ivOptions
             val popupMenu = PopupMenu(ivOptions.context,ivOptions)
